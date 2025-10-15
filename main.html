@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZIB - Creative Website</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          sans-serif;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      /* PAGE SYSTEM */
+      .page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      .page.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* HOME PAGE */
+      #home {
+        background: linear-gradient(
+          135deg,
+          #1e3a8a 0%,
+          #0891b2 50%,
+          #0f766e 100%
+        );
+        cursor: pointer;
+      }
+
+      .animated-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(34, 211, 238, 0.2) 50%,
+          transparent 100%
+        );
+        opacity: 0.3;
+        animation: pulse 4s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      /* FLOATING LOGO */
+      .floating-logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: clamp(3rem, 12vw, 8rem);
+        font-weight: bold;
+        color: white;
+        font-family: serif;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 40px rgba(34, 211, 238, 0.8),
+          0 0 80px rgba(34, 211, 238, 0.4);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* RIPPLE EFFECT */
+      .ripple {
+        position: absolute;
+        border: 2px solid rgba(34, 211, 238, 0.5);
+        border-radius: 50%;
+        animation: ripple 1s ease-out forwards;
+        pointer-events: none;
+      }
+
+      @keyframes ripple {
+        from {
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        to {
+          width: 400px;
+          height: 400px;
+          margin-left: -200px;
+          margin-top: -200px;
+          opacity: 0;
+        }
+      }
+
+      /* HAMBURGER MENU TOGGLE */
+      .menu-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        width: 3rem;
+        height: 3rem;
+        background: linear-gradient(135deg, #d4af37 0%, #1e40af 100%);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      }
+
+      .menu-toggle:hover {
+        background: linear-gradient(135deg, #f4d03f 0%, #2563eb 100%);
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+      }
+
+      .menu-toggle span {
+        width: 1.5rem;
+        height: 2px;
+        background: white;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translateY(8px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-8px);
+      }
+
+      /* LEFT SIDEBAR */
+      .nav-sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        background: linear-gradient(
+          180deg,
+          rgba(212, 175, 55, 0.15) 0%,
+          rgba(30, 64, 175, 0.15) 100%
+        );
+        backdrop-filter: blur(20px);
+        border-right: 2px solid rgba(212, 175, 55, 0.4);
+        display: flex;
+        flex-direction: column;
+        padding: 5rem 1.5rem 2rem;
+        gap: 1rem;
+        z-index: 99;
+        transition: left 0.3s ease;
+        box-shadow: 4px 0 20px rgba(212, 175, 55, 0.2);
+      }
+
+      .nav-sidebar.active {
+        left: 0;
+      }
+
+      .nav-sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .nav-sidebar-item:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.2) 0%,
+          rgba(30, 64, 175, 0.2) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.5);
+        color: white;
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      }
+
+      .nav-sidebar-item.active {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.3) 0%,
+          rgba(30, 64, 175, 0.3) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.6);
+        color: #f4d03f;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      }
+
+      .nav-sidebar-item svg {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+      }
+
+      .nav-sidebar-item span {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      /* TOP NAVIGATION ICONS */
+      .nav-icons-top {
+        position: fixed;
+        top: 0;
+        right: 2rem;
+        display: flex;
+        gap: 1.5rem;
+        z-index: 50;
+        padding-top: 1rem;
+      }
+
+      .nav-btn {
+        position: relative;
+        padding: 0.75rem;
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.2) 0%,
+          rgba(30, 64, 175, 0.2) 100%
+        );
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+      }
+
+      .nav-btn:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.3) 0%,
+          rgba(37, 99, 235, 0.3) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      }
+
+      .nav-btn.active {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.4) 0%,
+          rgba(30, 64, 175, 0.4) 100%
+        );
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+      }
+
+      .nav-btn svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.3s ease;
+      }
+
+      .nav-btn:hover svg {
+        color: white;
+      }
+
+      .nav-btn.active svg {
+        color: #f4d03f;
+      }
+
+      .tooltip {
+        position: absolute;
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .nav-btn:hover .tooltip {
+        opacity: 1;
+      }
+
+      /* ABOUT PAGE */
+      #about {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #164e63 50%,
+          #1e3a8a 100%
+        );
+      }
+
+      .animated-bg-about {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(34, 211, 238, 0.1) 50%,
+          transparent 100%
+        );
+        opacity: 0.2;
+        animation: pulse 5s infinite;
+      }
+
+      /* ABOUT CONTENT */
+      .about-content {
+        margin-left: 5rem;
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .profile-image {
+        position: relative;
+        margin-bottom: 4rem;
+        margin-top: 4rem;
+      }
+
+      .profile-glow {
+        position: absolute;
+        inset: 0;
+        background: rgba(212, 175, 55, 0.4);
+        filter: blur(60px);
+        border-radius: 50%;
+        animation: pulse 3s infinite;
+      }
+
+      .profile-circle {
+        position: relative;
+        width: 16rem;
+        height: 16rem;
+        background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .profile-circle:hover {
+        background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
+        box-shadow: 0 25px 70px rgba(212, 175, 55, 0.6);
+        transform: translateY(-5px) scale(1.05);
+      }
+
+      .profile-circle:active {
+        transform: translateY(0) scale(1);
+        background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+        box-shadow: 0 10px 40px rgba(212, 175, 55, 0.7),
+          inset 0 0 30px rgba(212, 175, 55, 0.3);
+      }
+
+      .profile-circle::before {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        background: #1e293b;
+        border-radius: 0.875rem;
+        z-index: 0;
+      }
+
+      .profile-circle img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 1;
+        padding: 1rem;
+      }
+
+      .profile-circle .profile-initials {
+        position: relative;
+        font-size: 3rem;
+        font-weight: bold;
+        color: rgb(103, 232, 249);
+        z-index: 1;
+      }
+
+      /* TEXT GRID */
+      .text-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        max-width: 64rem;
+        width: 100%;
+      }
+
+      .text-card {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.15) 0%,
+          rgba(244, 208, 63, 0.1) 100%
+        );
+        backdrop-filter: blur(12px);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+      }
+
+      .text-card:hover {
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        transform: translateY(-2px);
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.25) 0%,
+          rgba(244, 208, 63, 0.2) 100%
+        );
+      }
+
+      .text-card:active {
+        transform: translateY(0) scale(0.98);
+        border-color: rgba(212, 175, 55, 0.8);
+        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5),
+          inset 0 0 20px rgba(212, 175, 55, 0.2);
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.3) 0%,
+          rgba(244, 208, 63, 0.25) 100%
+        );
+      }
+
+      .text-card:active p {
+        color: rgba(244, 208, 63, 0.95);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+      }
+
+      .text-card p {
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.6;
+        font-size: 0.875rem;
+      }
+
+      /* PROJECTS PAGE */
+      #projects {
+        background: linear-gradient(135deg, #581c87 0%, #1e3a8a 100%);
+      }
+
+      .animated-bg-projects {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(139, 92, 246, 0.1) 50%,
+          transparent 100%
+        );
+        opacity: 0.2;
+        animation: pulse 5s infinite;
+      }
+
+      .projects-content {
+        margin-left: 5rem;
+        padding: 2rem 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .projects-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: bold;
+        color: white;
+        margin-bottom: 2rem;
+        text-align: center;
+        text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+      }
+
+      /* CREATIVE GRID LAYOUT */
+      .projects-grid-creative {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 2rem;
+        max-width: 70rem;
+        width: 100%;
+        margin: 0 auto;
+        flex: 1;
+        position: relative;
+        padding: 1rem;
+      }
+
+      .project-card-creative {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 1.5rem;
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        min-height: 260px;
+        perspective: 1000px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .project-card-creative::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(212, 175, 55, 0.2),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .project-card-creative:hover::before {
+        left: 100%;
+      }
+
+      .project-card-creative:hover {
+        transform: rotate(0deg) scale(1.08) translateY(-8px) !important;
+        border-color: rgba(212, 175, 55, 0.7);
+        box-shadow: 0 25px 70px rgba(212, 175, 55, 0.4),
+          0 10px 30px rgba(139, 92, 246, 0.3);
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .project-card-creative:active {
+        transform: rotate(0deg) scale(1.02) translateY(-2px) !important;
+        transition: all 0.1s ease;
+      }
+
+      .tilt-left {
+        transform: rotate(-3deg);
+      }
+
+      .tilt-right {
+        transform: rotate(2deg);
+      }
+
+      .tilt-left-bottom {
+        transform: rotate(-2deg);
+      }
+
+      .card-inner {
+        width: 100%;
+        height: 100%;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.5s ease;
+      }
+
+      .project-card-creative:hover .card-inner {
+        transform: scale(1.05);
+      }
+
+      .image-placeholder-creative {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-placeholder-creative img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 1rem;
+        margin-bottom: 0.5rem;
+        transition: all 0.5s ease;
+      }
+
+      .project-card-creative:hover .image-placeholder-creative img {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+      }
+
+      .image-placeholder-creative svg {
+        width: 80px;
+        height: 80px;
+        stroke: rgba(167, 139, 250, 0.7);
+        filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
+        transition: all 0.5s ease;
+      }
+
+      .project-card-creative:hover .image-placeholder-creative svg {
+        transform: scale(1.15) rotate(5deg);
+        stroke: rgba(212, 175, 55, 0.9);
+        filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+      }
+
+      .image-placeholder-creative h3 {
+        font-size: 1.5rem;
+        color: rgb(196, 181, 253);
+        font-weight: bold;
+        margin: 0;
+        transition: all 0.3s ease;
+      }
+
+      .project-card-creative:hover .image-placeholder-creative h3 {
+        color: #f4d03f;
+        transform: translateY(-3px);
+      }
+
+      .image-placeholder-creative p {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.5;
+        max-width: 250px;
+      }
+
+      /* CENTER CIRCULAR ELEMENT */
+      .center-circle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 140px;
+        height: 140px;
+        z-index: 20;
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .center-circle:hover {
+        transform: translate(-50%, -50%) scale(1.15) rotate(5deg);
+      }
+
+      .circle-content {
+        width: 100%;
+        height: 100%;
+        background: rgba(139, 92, 246, 0.2);
+        backdrop-filter: blur(20px);
+        border: 3px solid rgba(167, 139, 250, 0.5);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5),
+          inset 0 0 30px rgba(167, 139, 250, 0.2);
+        animation: pulse 3s infinite;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.5s ease;
+      }
+
+      .center-circle:hover .circle-content {
+        border-color: rgba(212, 175, 55, 0.8);
+        box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6),
+          inset 0 0 40px rgba(212, 175, 55, 0.3);
+        background: rgba(212, 175, 55, 0.15);
+      }
+
+      .circle-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        border-radius: 50%;
+      }
+
+      .circle-content .circle-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(139, 92, 246, 0.3);
+        z-index: 1;
+      }
+
+      .circle-content svg {
+        stroke: rgb(196, 181, 253);
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+        position: relative;
+        z-index: 2;
+        transition: all 0.5s ease;
+      }
+
+      .center-circle:hover .circle-content svg {
+        stroke: #f4d03f;
+        filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
+        transform: scale(1.1) rotate(10deg);
+      }
+
+      .circle-content span {
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+      }
+
+      .center-circle:hover .circle-content span {
+        color: #f4d03f;
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+        transform: scale(1.1);
+      }
+
+      /* TEXT SECTION */
+      .project-text-creative {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+
+      .text-card-sketch {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        transform: rotate(1deg);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+
+      .text-card-sketch:hover {
+        transform: rotate(0deg) scale(1.05);
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .text-card-sketch h3 {
+        font-size: 1.75rem;
+        color: rgb(196, 181, 253);
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+      }
+
+      .text-lines-sketch {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .text-lines-sketch p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        font-size: 0.95rem;
+        padding-left: 0.5rem;
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+
+      .text-lines-sketch p:hover {
+        color: #f4d03f;
+        padding-left: 1.5rem;
+        transform: translateX(5px);
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      }
+
+      /* CONTACT PAGE */
+      #contact {
+        background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+      }
+
+      .animated-bg-contact {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .contact-centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        padding: 3rem;
+        width: 800px;
+        max-width: 95vw;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .contact-form-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        flex: 1;
+      }
+
+      .form-group label {
+        display: block;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+        outline: none;
+      }
+
+      .message-group textarea {
+        height: 150px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(45deg, #22d3ee, #0891b2);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(34, 211, 238, 0.4);
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        color: white;
+      }
+
+      .social-media-icons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .social-media-icons a {
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.2) 0%,
+          rgba(244, 208, 63, 0.2) 100%
+        );
+        padding: 0.75rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+      }
+
+      .social-media-icons a:hover {
+        background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+        border-color: #f4d03f;
+        transform: translateY(-5px) scale(1.15);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+      }
+
+      .social-media-icons svg {
+        width: 28px;
+        height: 28px;
+        stroke: rgba(212, 175, 55, 0.9);
+        stroke-width: 2.5;
+        transition: all 0.3s ease;
+      }
+
+      .social-media-icons a:hover svg {
+        stroke: white;
+        stroke-width: 3;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        transform: rotate(8deg) scale(1.1);
+      }
+
+      /* FOOTER */
+      .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+        background: linear-gradient(
+          90deg,
+          rgba(212, 175, 55, 0.3) 0%,
+          rgba(30, 64, 175, 0.3) 50%,
+          rgba(212, 175, 55, 0.3) 100%
+        );
+        backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(212, 175, 55, 0.4);
+        box-shadow: 0 -4px 20px rgba(212, 175, 55, 0.2);
+      }
+
+      .footer-about {
+        left: 5rem;
+        width: calc(100% - 5rem);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .nav-sidebar {
+          width: 200px;
+          left: -200px;
+        }
+
+        .about-content {
+          margin-left: 0;
+          padding: 2rem 1rem;
+        }
+
+        .projects-content {
+          margin-left: 0;
+          padding: 2rem 1rem;
+          padding-top: 5rem;
+        }
+
+        .projects-grid-creative {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding: 1rem;
+        }
+
+        .project-card-creative {
+          transform: rotate(0deg) !important;
+          min-height: 220px;
+        }
+
+        .center-circle {
+          position: relative;
+          left: auto;
+          top: auto;
+          transform: none;
+          margin: 2rem auto;
+          order: 2;
+        }
+
+        .project-card-creative:nth-child(1) {
+          order: 1;
+        }
+
+        .project-card-creative:nth-child(2) {
+          order: 3;
+        }
+
+        .project-card-creative:nth-child(3) {
+          order: 4;
+        }
+
+        .project-text-creative {
+          order: 5;
+        }
+
+        .text-card-sketch {
+          transform: rotate(0deg);
+        }
+
+        .profile-circle {
+          width: 12rem;
+          height: 12rem;
+          font-size: 3rem;
+        }
+
+        .text-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .footer-about {
+          left: 0;
+          width: 100%;
+        }
+
+        .contact-info {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: center;
+        }
+
+        .social-media-icons {
+          gap: 1.5rem;
+        }
+
+        .social-media-icons svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .social-media-icons {
+          gap: 1rem;
+        }
+
+        .social-media-icons svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HAMBURGER MENU TOGGLE -->
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <nav class="nav-sidebar" id="navSidebar">
+      <a
+        href="#"
+        class="nav-sidebar-item active"
+        onclick="goToPageFromSidebar('home', event)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Home</span>
+      </a>
+      <a
+        href="#"
+        class="nav-sidebar-item"
+        onclick="goToPageFromSidebar('about', event)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>About</span>
+      </a>
+      <a
+        href="#"
+        class="nav-sidebar-item"
+        onclick="goToPageFromSidebar('projects', event)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        <span>Projects</span>
+      </a>
+      <a
+        href="#"
+        class="nav-sidebar-item"
+        onclick="goToPageFromSidebar('contact', event)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+          ></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+      <div class="animated-bg"></div>
+
+      <div class="floating-logo">ZIB</div>
+
+      <nav class="nav-icons-top">
+        <button
+          class="nav-btn active"
+          onclick="goToPage('home')"
+          aria-label="Home"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="tooltip">Home</span>
+        </button>
+        <button class="nav-btn" onclick="goToPage('about')" aria-label="About">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="tooltip">About</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="goToPage('projects')"
+          aria-label="Projects"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="tooltip">Projects</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="goToPage('contact')"
+          aria-label="Contact"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="tooltip">Contact</span>
+        </button>
+      </nav>
+
+      <footer class="footer">
+        <p>© 2025 ZIB • Designed with passion</p>
+      </footer>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="about" class="page">
+      <div class="animated-bg-about"></div>
+
+      <nav class="nav-icons-top">
+        <button class="nav-btn" onclick="goToPage('home')" aria-label="Home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="tooltip">Home</span>
+        </button>
+        <button
+          class="nav-btn active"
+          onclick="goToPage('about')"
+          aria-label="About"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="tooltip">About</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="goToPage('projects')"
+          aria-label="Projects"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="tooltip">Projects</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="goToPage('contact')"
+          aria-label="Contact"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="tooltip">Contact</span>
+        </button>
+      </nav>
+
+      <div class="about-content">
+        <div class="text-grid">
+          <div class="text-card">
+            <p>
+              Passionate creator exploring the intersection of design and
+              technology, crafting digital experiences that resonate with users
+              and push creative boundaries.
+            </p>
+          </div>
+          <div class="text-card">
+            <p>
+              Currently studying Interactive Media Design, diving deep into web
+              development, UX principles, and creative coding to build the
+              future of digital interaction.
+            </p>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <div class="profile-image">
+            <div class="profile-glow"></div>
+            <div class="profile-circle">
+              <!-- Replace 'YOUR_LOGO_IMAGE_URL_HERE' with your actual logo image URL -->
+              <img
+                src="image/profile pic/475253197_2313298129046370_2157494762718626781_n.jpg"
+                alt="ZIB Logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              />
+              <span class="profile-initials" style="display: none">ZIB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-grid">
+          <div class="text-card">
+            <p>
+              Fascinated by animation, motion graphics, and interactive
+              storytelling. Building experimental projects that blend aesthetics
+              with functionality.
+            </p>
+          </div>
+
+          <div class="text-card">
+            <p>
+              Committed to continuous learning and innovation, always exploring
+              new techniques to create immersive web experiences that leave
+              lasting impressions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer footer-about">
+        <p>© 2025 ZIB • Designed with passion</p>
+      </footer>
+    </section>
+
+    <!-- PROJECTS PAGE -->
+    <section id="projects" class="page">
+      <div class="animated-bg-projects"></div>
+
+      <nav class="nav-icons-top">
+        <button class="nav-btn" onclick="goToPage('home')" aria-label="Home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="tooltip">Home</span>
+        </button>
+        <button class="nav-btn" onclick="goToPage('about')" aria-label="About">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="tooltip">About</span>
+        </button>
+        <button
+          class="nav-btn active"
+          onclick="goToPage('projects')"
+          aria-label="Projects"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="tooltip">Projects</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="goToPage('contact')"
+          aria-label="Contact"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="tooltip">Contact</span>
+        </button>
+      </nav>
+
+      <div class="projects-content">
+        <h2 class="projects-title">What I Need to Become</h2>
+
+        <div class="projects-grid-creative">
+          <!-- Top Row: 2 tilted image cards -->
+          <div class="project-card-creative project-image-creative tilt-left">
+            <div class="card-inner">
+              <div class="image-placeholder-creative">
+                <!-- Replace 'PROJECT_IMAGE_1_URL' with your actual image URL -->
+                <img
+                  src="PROJECT_IMAGE_1_URL"
+                  alt="Master Coding Project"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  style="display: none"
+                >
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <h3>Master Coding</h3>
+                <p>HTML, CSS, JavaScript, React, and modern frameworks</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card-creative project-image-creative tilt-right">
+            <div class="card-inner">
+              <div class="image-placeholder-creative">
+                <!-- Replace 'PROJECT_IMAGE_2_URL' with your actual image URL -->
+                <img
+                  src="image/profile pic/"
+                  alt="Design Skills Project"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  style="display: none"
+                >
+                  <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                  <path d="M2 2l7.586 7.586"></path>
+                  <circle cx="11" cy="11" r="2"></circle>
+                </svg>
+                <h3>Design Skills</h3>
+                <p>UI/UX principles, typography, color theory, layouts</p>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <!-- Center: Circular element with YOUR OWN Image -->
+          <div class="center-circle">
+            <div class="circle-content">
+              <!-- REPLACE WITH YOUR OWN IMAGE URL BELOW -->
+              <img
+                src="image/profile pic/475253197_2313298129046370_2157494762718626781_n.jpg "
+                alt="Goal Image"
+                onerror="this.style.display='none';"
+              />
+              <div class="circle-overlay"></div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>Goals</span>
+            </div>
+          </div>
+
+          <br />
+
+          <!-- Bottom Row: 1 tilted card, 1 text section -->
+          <div
+            class="project-card-creative project-image-creative tilt-left-bottom"
+          >
+            <br />
+            <br />
+
+            <div class="card-inner">
+              <div class="image-placeholder-creative">
+                <!-- Replace 'PROJECT_IMAGE_3_URL' with your actual image URL -->
+                <img
+                  src="image/profile pic/"
+                  alt="Build Portfolio Project"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  style="display: none"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <h3>Build Portfolio</h3>
+                <p>Showcase diverse projects and creative solutions</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-text-creative">
+            <div class="text-card-sketch">
+              <h3>My Path Forward</h3>
+              <div class="text-lines-sketch">
+                <p>→ Practice daily coding challenges</p>
+                <p>→ Study design trends & patterns</p>
+                <p>→ Collaborate on real projects</p>
+                <p>→ Network with professionals</p>
+                <p>→ Stay curious & keep learning</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer footer-about">
+        <p>© 2025 ZIB • Designed with passion</p>
+      </footer>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page">
+      <div class="animated-bg-contact"></div>
+
+      <nav class="nav-icons-top">
+        <button class="nav-btn" onclick="goToPage('home')" aria-label="Home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="tooltip">Home</span>
+        </button>
+        <button class="nav-btn" onclick="goToPage('about')" aria-label="About">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="tooltip">About</span>
+        </button>
+        <button
+          class="nav-btn"
+          onclick="goToPage('projects')"
+          aria-label="Projects"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span class="tooltip">Projects</span>
+        </button>
+        <button
+          class="nav-btn active"
+          onclick="goToPage('contact')"
+          aria-label="Contact"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span class="tooltip">Contact</span>
+        </button>
+      </nav>
+
+      <div class="contact-content contact-centered">
+        <div class="contact-form-card">
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="What's this about?"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group message-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                rows="6"
+                placeholder="Tell me what's on your mind..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              <span>Send Message</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <div class="info-item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>contact@zib.com</span>
+          </div>
+          <div class="info-item">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Johannesburg, South Africa</span>
+          </div>
+        </div>
+
+        <div class="social-media-icons">
+          <a
+            href="https://www.instagram.com/pibzanation/?hl=en"
+            target="_blank"
+            aria-label="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/heylil-pibza-94633114a//"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href="https://twitter.com/" target="_blank" aria-label="Twitter">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/BusaniZungu"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <footer class="footer footer-about">
+        <p>© 2025 ZIB • Designed with passion</p>
+      </footer>
+    </section>
+
+    <script>
+      // TOGGLE MENU
+      function toggleMenu() {
+        const sidebar = document.getElementById("navSidebar");
+        const toggle = document.querySelector(".menu-toggle");
+        sidebar.classList.toggle("active");
+        toggle.classList.toggle("active");
+      }
+
+      // NAVIGATION FROM SIDEBAR
+      function goToPageFromSidebar(pageName, event) {
+        event.preventDefault();
+        goToPage(pageName);
+
+        // Update sidebar active states
+        document.querySelectorAll(".nav-sidebar-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        event.currentTarget.classList.add("active");
+
+        // Close sidebar on mobile
+        if (window.innerWidth <= 768) {
+          toggleMenu();
+        }
+      }
+
+      function goToPage(pageName) {
+        console.log("Navigating to:", pageName);
+
+        document.querySelectorAll(".page").forEach((page) => {
+          page.classList.remove("active");
+        });
+
+        const targetPage = document.getElementById(pageName);
+        if (targetPage) {
+          targetPage.classList.add("active");
+        }
+
+        document.querySelectorAll(".nav-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        document.querySelectorAll(".nav-btn").forEach((btn) => {
+          if (btn.getAttribute("onclick").includes(pageName)) {
+            btn.classList.add("active");
+          }
+        });
+      }
+
+      document.getElementById("home").addEventListener("click", function (e) {
+        if (e.target.closest(".nav-btn")) return;
+
+        const ripple = document.createElement("div");
+        ripple.className = "ripple";
+        ripple.style.left = e.clientX + "px";
+        ripple.style.top = e.clientY + "px";
+
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 1000);
+      });
+
+      let logoX = 50,
+        logoY = 50,
+        dx = 0.15,
+        dy = 0.12;
+      const logo = document.querySelector(".floating-logo");
+
+      function animateLogo() {
+        logoX += dx;
+        logoY += dy;
+
+        if (logoX <= 20 || logoX >= 80) dx *= -1;
+        if (logoY <= 20 || logoY >= 80) dy *= -1;
+
+        logo.style.left = logoX + "%";
+        logo.style.top = logoY + "%";
+
+        requestAnimationFrame(animateLogo);
+      }
+
+      animateLogo();
+
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        alert(
+          `Thank you, ${name}! Your message has been received. I'll get back to you at ${email} soon!`
+        );
+
+        event.target.reset();
+
+        console.log("Form submitted:", { name, email, subject, message });
+      }
+
+      console.log(
+        "Portfolio loaded! Click navigation buttons to switch pages."
+      );
+    </script>
+  </body>
+</html>
