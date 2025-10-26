@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZIB - Creative Website</title>
+    <title>Zungu Innocent Busani - Creative Portfolio</title>
     <style>
       * {
         margin: 0;
@@ -12,8 +12,7 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-          sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
         overflow: hidden;
         width: 100vw;
         height: 100vh;
@@ -38,12 +37,7 @@
 
       /* HOME PAGE */
       #home {
-        background: linear-gradient(
-          135deg,
-          #1e3a8a 0%,
-          #0891b2 50%,
-          #0f766e 100%
-        );
+        background: linear-gradient(135deg, #1e3a8a 0%, #0891b2 50%, #0f766e 100%);
         cursor: pointer;
       }
 
@@ -51,24 +45,14 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent 0%,
-          rgba(34, 211, 238, 0.2) 50%,
-          transparent 100%
-        );
+        background: linear-gradient(90deg, transparent 0%, rgba(34, 211, 238, 0.2) 50%, transparent 100%);
         opacity: 0.3;
         animation: pulse 4s infinite;
       }
 
       @keyframes pulse {
-        0%,
-        100% {
-          opacity: 0.3;
-        }
-        50% {
-          opacity: 0.5;
-        }
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.5; }
       }
 
       /* FLOATING LOGO */
@@ -77,15 +61,30 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: clamp(3rem, 12vw, 8rem);
-        font-weight: bold;
-        color: white;
-        font-family: serif;
-        letter-spacing: 0.1em;
-        text-shadow: 0 0 40px rgba(34, 211, 238, 0.8),
-          0 0 80px rgba(34, 211, 238, 0.4);
+        width: clamp(250px, 35vw, 500px);
+        height: clamp(180px, 25vw, 360px);
         pointer-events: none;
         z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .floating-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
+        animation: logoFloat 4s ease-in-out infinite;
+      }
+
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-15px) scale(1.02); }
       }
 
       /* RIPPLE EFFECT */
@@ -167,11 +166,7 @@
         top: 0;
         height: 100%;
         width: 250px;
-        background: linear-gradient(
-          180deg,
-          rgba(212, 175, 55, 0.15) 0%,
-          rgba(30, 64, 175, 0.15) 100%
-        );
+        background: linear-gradient(180deg, rgba(212, 175, 55, 0.15) 0%, rgba(30, 64, 175, 0.15) 100%);
         backdrop-filter: blur(20px);
         border-right: 2px solid rgba(212, 175, 55, 0.4);
         display: flex;
@@ -202,11 +197,7 @@
       }
 
       .nav-sidebar-item:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.2) 0%,
-          rgba(30, 64, 175, 0.2) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(30, 64, 175, 0.2) 100%);
         border-color: rgba(212, 175, 55, 0.5);
         color: white;
         transform: translateX(5px);
@@ -214,11 +205,7 @@
       }
 
       .nav-sidebar-item.active {
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.3) 0%,
-          rgba(30, 64, 175, 0.3) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(30, 64, 175, 0.3) 100%);
         border-color: rgba(212, 175, 55, 0.6);
         color: #f4d03f;
         box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
@@ -249,11 +236,7 @@
       .nav-btn {
         position: relative;
         padding: 0.75rem;
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.2) 0%,
-          rgba(30, 64, 175, 0.2) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(30, 64, 175, 0.2) 100%);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(212, 175, 55, 0.3);
         border-radius: 50%;
@@ -263,22 +246,14 @@
       }
 
       .nav-btn:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.3) 0%,
-          rgba(37, 99, 235, 0.3) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(37, 99, 235, 0.3) 100%);
         border-color: rgba(212, 175, 55, 0.5);
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
       }
 
       .nav-btn.active {
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.4) 0%,
-          rgba(30, 64, 175, 0.4) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.4) 0%, rgba(30, 64, 175, 0.4) 100%);
         border-color: rgba(212, 175, 55, 0.6);
         box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
       }
@@ -318,29 +293,18 @@
 
       /* ABOUT PAGE */
       #about {
-        background: linear-gradient(
-          135deg,
-          #0f172a 0%,
-          #164e63 50%,
-          #1e3a8a 100%
-        );
+        background: linear-gradient(135deg, #0f172a 0%, #164e63 50%, #1e3a8a 100%);
       }
 
       .animated-bg-about {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          135deg,
-          transparent 0%,
-          rgba(34, 211, 238, 0.1) 50%,
-          transparent 100%
-        );
+        background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.1) 50%, transparent 100%);
         opacity: 0.2;
         animation: pulse 5s infinite;
       }
 
-      /* ABOUT CONTENT */
       .about-content {
         margin-left: 5rem;
         padding: 3rem;
@@ -390,8 +354,7 @@
       .profile-circle:active {
         transform: translateY(0) scale(1);
         background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
-        box-shadow: 0 10px 40px rgba(212, 175, 55, 0.7),
-          inset 0 0 30px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 10px 40px rgba(212, 175, 55, 0.7), inset 0 0 30px rgba(212, 175, 55, 0.3);
       }
 
       .profile-circle::before {
@@ -420,7 +383,6 @@
         z-index: 1;
       }
 
-      /* TEXT GRID */
       .text-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -430,11 +392,7 @@
       }
 
       .text-card {
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.15) 0%,
-          rgba(244, 208, 63, 0.1) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(244, 208, 63, 0.1) 100%);
         backdrop-filter: blur(12px);
         padding: 1.5rem;
         border-radius: 1rem;
@@ -448,23 +406,14 @@
         border-color: rgba(212, 175, 55, 0.6);
         box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         transform: translateY(-2px);
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.25) 0%,
-          rgba(244, 208, 63, 0.2) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(244, 208, 63, 0.2) 100%);
       }
 
       .text-card:active {
         transform: translateY(0) scale(0.98);
         border-color: rgba(212, 175, 55, 0.8);
-        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5),
-          inset 0 0 20px rgba(212, 175, 55, 0.2);
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.3) 0%,
-          rgba(244, 208, 63, 0.25) 100%
-        );
+        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.2);
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(244, 208, 63, 0.25) 100%);
       }
 
       .text-card:active p {
@@ -487,12 +436,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          135deg,
-          transparent 0%,
-          rgba(139, 92, 246, 0.1) 50%,
-          transparent 100%
-        );
+        background: linear-gradient(135deg, transparent 0%, rgba(139, 92, 246, 0.1) 50%, transparent 100%);
         opacity: 0.2;
         animation: pulse 5s infinite;
       }
@@ -516,7 +460,6 @@
         text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
       }
 
-      /* CREATIVE GRID LAYOUT */
       .projects-grid-creative {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -552,12 +495,7 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(212, 175, 55, 0.2),
-          transparent
-        );
+        background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
         transition: left 0.6s ease;
       }
 
@@ -568,8 +506,7 @@
       .project-card-creative:hover {
         transform: rotate(0deg) scale(1.08) translateY(-8px) !important;
         border-color: rgba(212, 175, 55, 0.7);
-        box-shadow: 0 25px 70px rgba(212, 175, 55, 0.4),
-          0 10px 30px rgba(139, 92, 246, 0.3);
+        box-shadow: 0 25px 70px rgba(212, 175, 55, 0.4), 0 10px 30px rgba(139, 92, 246, 0.3);
         z-index: 10;
         background: rgba(255, 255, 255, 0.12);
       }
@@ -664,7 +601,6 @@
         max-width: 250px;
       }
 
-      /* CENTER CIRCULAR ELEMENT */
       .center-circle {
         position: absolute;
         left: 50%;
@@ -693,8 +629,7 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5),
-          inset 0 0 30px rgba(167, 139, 250, 0.2);
+        box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5), inset 0 0 30px rgba(167, 139, 250, 0.2);
         animation: pulse 3s infinite;
         overflow: hidden;
         position: relative;
@@ -703,8 +638,7 @@
 
       .center-circle:hover .circle-content {
         border-color: rgba(212, 175, 55, 0.8);
-        box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6),
-          inset 0 0 40px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6), inset 0 0 40px rgba(212, 175, 55, 0.3);
         background: rgba(212, 175, 55, 0.15);
       }
 
@@ -757,7 +691,6 @@
         transform: scale(1.1);
       }
 
-      /* TEXT SECTION */
       .project-text-creative {
         display: flex;
         align-items: center;
@@ -935,11 +868,7 @@
       }
 
       .social-media-icons a {
-        background: linear-gradient(
-          135deg,
-          rgba(212, 175, 55, 0.2) 0%,
-          rgba(244, 208, 63, 0.2) 100%
-        );
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(244, 208, 63, 0.2) 100%);
         padding: 0.75rem;
         border-radius: 12px;
         transition: all 0.3s ease;
@@ -981,12 +910,7 @@
         text-align: center;
         font-size: 0.875rem;
         color: rgba(255, 255, 255, 0.9);
-        background: linear-gradient(
-          90deg,
-          rgba(212, 175, 55, 0.3) 0%,
-          rgba(30, 64, 175, 0.3) 50%,
-          rgba(212, 175, 55, 0.3) 100%
-        );
+        background: linear-gradient(90deg, rgba(212, 175, 55, 0.3) 0%, rgba(30, 64, 175, 0.3) 50%, rgba(212, 175, 55, 0.3) 100%);
         backdrop-filter: blur(8px);
         border-top: 1px solid rgba(212, 175, 55, 0.4);
         box-shadow: 0 -4px 20px rgba(212, 175, 55, 0.2);
@@ -1002,6 +926,12 @@
         .nav-sidebar {
           width: 200px;
           left: -200px;
+        }
+
+        .floating-logo {
+          width: clamp(200px, 50vw, 350px);
+          height: clamp(145px, 36vw, 250px);
+          padding: 1.5rem;
         }
 
         .about-content {
@@ -1085,9 +1015,58 @@
           width: 24px;
           height: 24px;
         }
+
+        .nav-icons-top {
+          right: 1rem;
+          gap: 1rem;
+        }
+
+        .nav-btn {
+          padding: 0.6rem;
+        }
+
+        .nav-btn svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .menu-toggle {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        .menu-toggle span {
+          width: 1.2rem;
+        }
+
+        .contact-centered {
+          padding: 2rem;
+          width: 90vw;
+        }
+
+        .form-row {
+          flex-direction: column;
+          gap: 1rem;
+        }
       }
 
       @media (max-width: 480px) {
+        .floating-logo {
+          width: clamp(180px, 60vw, 280px);
+          height: clamp(130px, 43vw, 200px);
+          padding: 1rem;
+        }
+
+        .profile-circle {
+          width: 10rem;
+          height: 10rem;
+        }
+
+        .projects-title {
+          font-size: 1.75rem;
+          margin-bottom: 1.5rem;
+        }
+
         .social-media-icons {
           gap: 1rem;
         }
@@ -1096,93 +1075,74 @@
           width: 20px;
           height: 20px;
         }
+
+        .nav-icons-top {
+          right: 0.5rem;
+          gap: 0.75rem;
+        }
+
+        .nav-btn {
+          padding: 0.5rem;
+        }
+
+        .nav-btn svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .tooltip {
+          display: none;
+        }
+
+        .contact-centered {
+          padding: 1.5rem;
+        }
+
+        .contact-form-card {
+          padding: 1.5rem;
+        }
+
+        .info-item {
+          font-size: 0.875rem;
+          padding: 0.75rem 1rem;
+        }
+
+        .footer {
+          font-size: 0.75rem;
+          padding: 1rem;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- HAMBURGER MENU TOGGLE -->
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  
 
     <!-- LEFT SIDEBAR NAVIGATION -->
     <nav class="nav-sidebar" id="navSidebar">
-      <a
-        href="#"
-        class="nav-sidebar-item active"
-        onclick="goToPageFromSidebar('home', event)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
+      <a href="#" class="nav-sidebar-item active" onclick="goToPageFromSidebar('home', event)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
           <polyline points="9 22 9 12 15 12 15 22"></polyline>
         </svg>
         <span>Home</span>
       </a>
-      <a
-        href="#"
-        class="nav-sidebar-item"
-        onclick="goToPageFromSidebar('about', event)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
+      <a href="#" class="nav-sidebar-item" onclick="goToPageFromSidebar('about', event)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
         <span>About</span>
       </a>
-      <a
-        href="#"
-        class="nav-sidebar-item"
-        onclick="goToPageFromSidebar('projects', event)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
+      <a href="#" class="nav-sidebar-item" onclick="goToPageFromSidebar('projects', event)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
           <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
         </svg>
         <span>Projects</span>
       </a>
-      <a
-        href="#"
-        class="nav-sidebar-item"
-        onclick="goToPageFromSidebar('contact', event)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-          ></path>
+      <a href="#" class="nav-sidebar-item" onclick="goToPageFromSidebar('contact', event)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
           <polyline points="22,6 12,13 2,6"></polyline>
         </svg>
         <span>Contact</span>
@@ -1193,79 +1153,35 @@
     <section id="home" class="page active">
       <div class="animated-bg"></div>
 
-      <div class="floating-logo">ZIB</div>
+      <div class="floating-logo">
+        <img src="image/loco logo.jpg" alt="Zungu Innocent Busani Logo" />
+      </div>
 
       <nav class="nav-icons-top">
-        <button
-          class="nav-btn active"
-          onclick="goToPage('home')"
-          aria-label="Home"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+        <button class="nav-btn active" onclick="goToPage('home')" aria-label="Home">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
           <span class="tooltip">Home</span>
         </button>
         <button class="nav-btn" onclick="goToPage('about')" aria-label="About">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
           <span class="tooltip">About</span>
         </button>
-        <button
-          class="nav-btn"
-          onclick="goToPage('projects')"
-          aria-label="Projects"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+        <button class="nav-btn" onclick="goToPage('projects')" aria-label="Projects">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
           </svg>
           <span class="tooltip">Projects</span>
         </button>
-        <button
-          class="nav-btn"
-          onclick="goToPage('contact')"
-          aria-label="Contact"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
+        <button class="nav-btn" onclick="goToPage('contact')" aria-label="Contact">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           <span class="tooltip">Contact</span>
@@ -1273,7 +1189,7 @@
       </nav>
 
       <footer class="footer">
-        <p>© 2025 ZIB • Designed with passion</p>
+        <p>© 2025 Zungu Innocent Busani • Designed with passion</p>
       </footer>
     </section>
 
@@ -1283,75 +1199,29 @@
 
       <nav class="nav-icons-top">
         <button class="nav-btn" onclick="goToPage('home')" aria-label="Home">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
           <span class="tooltip">Home</span>
         </button>
-        <button
-          class="nav-btn active"
-          onclick="goToPage('about')"
-          aria-label="About"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+        <button class="nav-btn active" onclick="goToPage('about')" aria-label="About">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
           <span class="tooltip">About</span>
         </button>
-        <button
-          class="nav-btn"
-          onclick="goToPage('projects')"
-          aria-label="Projects"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+        <button class="nav-btn" onclick="goToPage('projects')" aria-label="Projects">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
           </svg>
           <span class="tooltip">Projects</span>
         </button>
-        <button
-          class="nav-btn"
-          onclick="goToPage('contact')"
-          aria-label="Contact"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
+        <button class="nav-btn" onclick="goToPage('contact')" aria-label="Contact">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           <span class="tooltip">Contact</span>
@@ -1361,61 +1231,33 @@
       <div class="about-content">
         <div class="text-grid">
           <div class="text-card">
-            <p>
-              Passionate creator exploring the intersection of design and
-              technology, crafting digital experiences that resonate with users
-              and push creative boundaries.
-            </p>
+            <p>Passionate creator exploring the intersection of design and technology, crafting digital experiences that resonate with users and push creative boundaries.</p>
           </div>
           <div class="text-card">
-            <p>
-              Currently studying Interactive Media Design, diving deep into web
-              development, UX principles, and creative coding to build the
-              future of digital interaction.
-            </p>
+            <p>Currently studying Interactive Media Design, diving deep into web development, UX principles, and creative coding to build the future of digital interaction.</p>
           </div>
         </div>
 
-        <br />
-        <br />
-        <br />
-
-        <div>
-          <div class="profile-image">
-            <div class="profile-glow"></div>
-            <div class="profile-circle">
-              <!-- Replace 'YOUR_LOGO_IMAGE_URL_HERE' with your actual logo image URL -->
-              <img
-                src="image/profile pic/475253197_2313298129046370_2157494762718626781_n.jpg"
-                alt="ZIB Logo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-              />
-              <span class="profile-initials" style="display: none">ZIB</span>
-            </div>
+        <div class="profile-image">
+          <div class="profile-glow"></div>
+          <div class="profile-circle">
+            <img src="image/profile pic/475253197_2313298129046370_2157494762718626781_n.jpg" alt="Profile" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <span class="profile-initials" style="display: none">ZIB</span>
           </div>
         </div>
 
         <div class="text-grid">
           <div class="text-card">
-            <p>
-              Fascinated by animation, motion graphics, and interactive
-              storytelling. Building experimental projects that blend aesthetics
-              with functionality.
-            </p>
+            <p>Fascinated by animation, motion graphics, and interactive storytelling. Building experimental projects that blend aesthetics with functionality.</p>
           </div>
-
           <div class="text-card">
-            <p>
-              Committed to continuous learning and innovation, always exploring
-              new techniques to create immersive web experiences that leave
-              lasting impressions.
-            </p>
+            <p>Committed to continuous learning and innovation, always exploring new techniques to create immersive web experiences that leave lasting impressions.</p>
           </div>
         </div>
       </div>
 
       <footer class="footer footer-about">
-        <p>© 2025 ZIB • Designed with passion</p>
+        <p>© 2025 Zungu Innocent Busani • Designed with passion</p>
       </footer>
     </section>
 
@@ -1425,71 +1267,29 @@
 
       <nav class="nav-icons-top">
         <button class="nav-btn" onclick="goToPage('home')" aria-label="Home">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
           <span class="tooltip">Home</span>
         </button>
         <button class="nav-btn" onclick="goToPage('about')" aria-label="About">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
           <span class="tooltip">About</span>
         </button>
-        <button
-          class="nav-btn active"
-          onclick="goToPage('projects')"
-          aria-label="Projects"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+        <button class="nav-btn active" onclick="goToPage('projects')" aria-label="Projects">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
           </svg>
           <span class="tooltip">Projects</span>
         </button>
-        <button
-          class="nav-btn"
-          onclick="goToPage('contact')"
-          aria-label="Contact"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
+        <button class="nav-btn" onclick="goToPage('contact')" aria-label="Contact">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           <span class="tooltip">Contact</span>
@@ -1500,26 +1300,10 @@
         <h2 class="projects-title">What I Need to Become</h2>
 
         <div class="projects-grid-creative">
-          <!-- Top Row: 2 tilted image cards -->
           <div class="project-card-creative project-image-creative tilt-left">
             <div class="card-inner">
               <div class="image-placeholder-creative">
-                <!-- Replace 'PROJECT_IMAGE_1_URL' with your actual image URL -->
-                <img
-                  src="PROJECT_IMAGE_1_URL"
-                  alt="Master Coding Project"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="64"
-                  height="64"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  style="display: none"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <polyline points="16 18 22 12 16 6"></polyline>
                   <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
@@ -1532,22 +1316,7 @@
           <div class="project-card-creative project-image-creative tilt-right">
             <div class="card-inner">
               <div class="image-placeholder-creative">
-                <!-- Replace 'PROJECT_IMAGE_2_URL' with your actual image URL -->
-                <img
-                  src="image/profile pic/"
-                  alt="Design Skills Project"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="64"
-                  height="64"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  style="display: none"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
                   <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
                   <path d="M2 2l7.586 7.586"></path>
@@ -1559,27 +1328,11 @@
             </div>
           </div>
 
-          <br />
-
-          <!-- Center: Circular element with YOUR OWN Image -->
           <div class="center-circle">
             <div class="circle-content">
-              <!-- REPLACE WITH YOUR OWN IMAGE URL BELOW -->
-              <img
-                src="image/profile pic/475253197_2313298129046370_2157494762718626781_n.jpg "
-                alt="Goal Image"
-                onerror="this.style.display='none';"
-              />
+              <img src="image/profile pic/475253197_2313298129046370_2157494762718626781_n.jpg" alt="Goal" onerror="this.style.display='none';" />
               <div class="circle-overlay"></div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>
@@ -1587,33 +1340,10 @@
             </div>
           </div>
 
-          <br />
-
-          <!-- Bottom Row: 1 tilted card, 1 text section -->
-          <div
-            class="project-card-creative project-image-creative tilt-left-bottom"
-          >
-            <br />
-            <br />
-
+          <div class="project-card-creative project-image-creative tilt-left-bottom">
             <div class="card-inner">
               <div class="image-placeholder-creative">
-                <!-- Replace 'PROJECT_IMAGE_3_URL' with your actual image URL -->
-                <img
-                  src="image/profile pic/"
-                  alt="Build Portfolio Project"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="64"
-                  height="64"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  style="display: none"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                   <line x1="8" y1="21" x2="16" y2="21"></line>
                   <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -1640,7 +1370,7 @@
       </div>
 
       <footer class="footer footer-about">
-        <p>© 2025 ZIB • Designed with passion</p>
+        <p>© 2025 Zungu Innocent Busani • Designed with passion</p>
       </footer>
     </section>
 
@@ -1650,71 +1380,29 @@
 
       <nav class="nav-icons-top">
         <button class="nav-btn" onclick="goToPage('home')" aria-label="Home">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
           <span class="tooltip">Home</span>
         </button>
         <button class="nav-btn" onclick="goToPage('about')" aria-label="About">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
           <span class="tooltip">About</span>
         </button>
-        <button
-          class="nav-btn"
-          onclick="goToPage('projects')"
-          aria-label="Projects"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+        <button class="nav-btn" onclick="goToPage('projects')" aria-label="Projects">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
           </svg>
           <span class="tooltip">Projects</span>
         </button>
-        <button
-          class="nav-btn active"
-          onclick="goToPage('contact')"
-          aria-label="Contact"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
+        <button class="nav-btn active" onclick="goToPage('contact')" aria-label="Contact">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           <span class="tooltip">Contact</span>
@@ -1731,79 +1419,29 @@
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="your@email.com"
-                  required
-                />
+                <input type="email" id="email" placeholder="your@email.com" required />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  placeholder="What's this about?"
-                  required
-                />
+                <input type="text" id="subject" placeholder="What's this about?" required />
               </div>
             </div>
             <div class="form-group message-group">
               <label for="message">Message</label>
-              <textarea
-                id="message"
-                rows="6"
-                placeholder="Tell me what's on your mind..."
-                required
-              ></textarea>
+              <textarea id="message" rows="6" placeholder="Tell me what's on your mind..." required></textarea>
             </div>
             <button type="submit" class="submit-btn">
               <span>Send Message</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            </button>
-          </form>
-        </div>
-        <div class="contact-info">
-          <div class="info-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              ></path>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            <span>contact@zib.com</span>
+            <span>zibcontact@gmail.com</span>
           </div>
           <div class="info-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
@@ -1812,93 +1450,35 @@
         </div>
 
         <div class="social-media-icons">
-          <a
-            href="https://www.instagram.com/pibzanation/?hl=en"
-            target="_blank"
-            aria-label="Instagram"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+          <a href="https://www.instagram.com/pibzanation/?hl=en" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
               <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
           </a>
-          <a
-            href="https://www.linkedin.com/in/heylil-pibza-94633114a//"
-            target="_blank"
-            aria-label="LinkedIn"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-              ></path>
+          <a href="https://www.linkedin.com/in/heylil-pibza-94633114a/" target="_blank" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
               <rect x="2" y="9" width="4" height="12"></rect>
               <circle cx="4" cy="4" r="2"></circle>
             </svg>
           </a>
           <a href="https://x.com/PibzaNation" target="_blank" aria-label="Twitter">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-              ></path>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
             </svg>
           </a>
-          <a
-            href="https://github.com/BusaniZungu"
-            target="_blank"
-            aria-label="GitHub"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-              ></path>
+          <a href="https://github.com/BusaniZungu" target="_blank" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
           </a>
         </div>
       </div>
 
       <footer class="footer footer-about">
-        <p>© 2025 ZIB • Designed with passion</p>
+        <p>© 2025 Zungu Innocent Busani • Designed with passion</p>
       </footer>
     </section>
 
@@ -1928,6 +1508,7 @@
         }
       }
 
+      // PAGE NAVIGATION
       function goToPage(pageName) {
         console.log("Navigating to:", pageName);
 
@@ -1951,6 +1532,7 @@
         });
       }
 
+      // RIPPLE EFFECT ON HOME PAGE
       document.getElementById("home").addEventListener("click", function (e) {
         if (e.target.closest(".nav-btn")) return;
 
@@ -1964,18 +1546,19 @@
         setTimeout(() => ripple.remove(), 1000);
       });
 
+      // FLOATING LOGO ANIMATION
       let logoX = 50,
         logoY = 50,
-        dx = 0.15,
-        dy = 0.12;
+        dx = 0.08,
+        dy = 0.06;
       const logo = document.querySelector(".floating-logo");
 
       function animateLogo() {
         logoX += dx;
         logoY += dy;
 
-        if (logoX <= 20 || logoX >= 80) dx *= -1;
-        if (logoY <= 20 || logoY >= 80) dy *= -1;
+        if (logoX <= 15 || logoX >= 85) dx *= -1;
+        if (logoY <= 15 || logoY >= 85) dy *= -1;
 
         logo.style.left = logoX + "%";
         logo.style.top = logoY + "%";
@@ -1985,6 +1568,7 @@
 
       animateLogo();
 
+      // CONTACT FORM SUBMISSION
       function handleSubmit(event) {
         event.preventDefault();
 
@@ -2002,9 +1586,16 @@
         console.log("Form submitted:", { name, email, subject, message });
       }
 
-      console.log(
-        "Portfolio loaded! Click navigation buttons to switch pages."
-      );
+      console.log("Portfolio loaded! Click navigation buttons to switch pages.");
     </script>
   </body>
-</html>
+</html> 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24
